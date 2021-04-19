@@ -1,15 +1,35 @@
-﻿// Copyright (c) 2012-2020 fo-dicom contributors.
-// Licensed under the Microsoft Public License (MS-PL).
+﻿// Copyright (c) 2010-2017 Anders Gustafsson, Cureos AB.
+// All rights reserved. Any unauthorised reproduction of this 
+// material will constitute an infringement of copyright.
 
 namespace Dicom.Imaging
 {
-    using System;
-
     /// <summary>
-    /// Evaluation release placeholder for <see cref="ImageManager"/> implementation.
+    /// Unity3D based image manager implementation.
     /// </summary>
     public class UnityImageManager : ImageManager
     {
+        #region FIELDS
+
+        /// <summary>
+        /// Single instance of the Unity3D image manager.
+        /// </summary>
+        public static readonly ImageManager Instance;
+
+        #endregion
+
+        #region CONSTRUCTORS
+
+        /// <summary>
+        /// Initializes the static fields of <see cref="UnityImageManager"/>
+        /// </summary>
+        static UnityImageManager()
+        {
+            Instance = new UnityImageManager();
+        }
+
+        #endregion
+
         #region PROPERTIES
 
         /// <summary>
@@ -29,7 +49,7 @@ namespace Dicom.Imaging
         /// <returns><see cref="IImage"/> object using the current implementation.</returns>
         protected override IImage CreateImageImpl(int width, int height)
         {
-            throw new NotSupportedException("Image creation is not supported in EVALUATION release of fo-dicom for Unity.");
+            return new UnityImage(width, height);
         }
 
         #endregion
