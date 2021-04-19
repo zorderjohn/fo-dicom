@@ -170,6 +170,12 @@
     <Compile Include="..\..\DICOM\Imaging\WindowsImageManager.cs">
       <Link>Imaging\WindowsImageManager.cs</Link>
     </Compile>
+    <Compile Include="..\..\DICOM\Imaging\UnityImage.cs">
+      <Link>Imaging\UnityImage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DICOM\Imaging\UnityImageManager.cs">
+      <Link>Imaging\UnityImageManager.cs</Link>
+    </Compile>
     <Compile Include="..\..\DICOM\IO\DesktopDirectoryReference.cs">
       <Link>IO\DesktopDirectoryReference.cs</Link>
     </Compile>
@@ -207,6 +213,11 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>5.3.3</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\External\Unity\UnityEngine.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="..\..\DICOM\DICOM.Shared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
