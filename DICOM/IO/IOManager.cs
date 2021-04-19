@@ -23,12 +23,18 @@ namespace Dicom.IO
         /// </summary>
         static IOManager()
         {
-            SetImplementation(Setup.GetSinglePlatformInstance<IOManager>());
+#if DESKTOP_PLATFORM
+            SetImplementation(new DesktopIOManager());
+#elif UNIVERSAL_PLATFORM
+            SetImplementation(new WindowsIOManager());
+#else
+#error Please define IOManager implementation
+#endif
         }
 
-        #endregion
+#endregion
 
-        #region PROPERTIES
+#region PROPERTIES
 
         /// <summary>
         /// Gets the base encoding for the current platform.
@@ -62,9 +68,9 @@ namespace Dicom.IO
         /// </summary>
         protected abstract IPath PathImpl { get; }
 
-        #endregion
+#endregion
 
-        #region METHODS
+#region METHODS
 
         /// <summary>
         /// Set I/O manager implementation to use for file/directory reference initialization.
@@ -109,6 +115,6 @@ namespace Dicom.IO
         /// <returns>A directory reference object.</returns>
         protected abstract IDirectoryReference CreateDirectoryReferenceImpl(string directoryName);
 
-        #endregion
+#endregion
     }
 }

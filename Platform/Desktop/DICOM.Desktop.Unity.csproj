@@ -26,7 +26,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;DESKTOP_PLATFORM;UNITY_PLATFORM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Dicom.Core.XML</DocumentationFile>
@@ -39,7 +39,6 @@
     <AssemblyOriginatorKeyFile>..\..\DICOM\fo-dicom.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -49,6 +48,9 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\External\Unity\UnityEngine.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -61,17 +63,11 @@
     <Compile Include="..\..\DICOM\Imaging\DicomOverlayDataFactory.cs">
       <Link>Imaging\DicomOverlayDataFactory.cs</Link>
     </Compile>
-    <Compile Include="..\..\DICOM\Imaging\WinFormsImage.cs">
+    <Compile Include="..\..\DICOM\Imaging\UnityImage.cs">
       <Link>Imaging\WinFormsImage.cs</Link>
     </Compile>
-    <Compile Include="..\..\DICOM\Imaging\WinFormsImageManager.cs">
+    <Compile Include="..\..\DICOM\Imaging\UnityImageManager.cs">
       <Link>Imaging\WinFormsImageManager.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DICOM\Imaging\WPFImage.cs">
-      <Link>Imaging\WPFImage.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DICOM\Imaging\WPFImageManager.cs">
-      <Link>Imaging\WPFImageManager.cs</Link>
     </Compile>
     <Compile Include="..\..\DICOM\IO\DesktopDirectoryReference.cs">
       <Link>IO\DesktopDirectoryReference.cs</Link>

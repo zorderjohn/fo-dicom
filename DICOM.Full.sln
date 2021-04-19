@@ -9,12 +9,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1E86A172-B9C5-4BBF-BD0F-22507432C8A5}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
 		ChangeLog.md = ChangeLog.md
 		Contributors.md = Contributors.md
 		License.txt = License.txt
 		README.md = README.md
 		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
-		.github\workflows\build.yml = .github\workflows\build.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{C5DA6B80-6F59-4893-9ED1-D78E82BBC98B}"
@@ -88,7 +88,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libijg16.x64", "Native\Desk
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libijg16.x86", "Native\Desktop\libijg16.x86.vcxproj", "{63088DEC-9F99-404C-B4E8-D823D2A0018F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DICOM.Desktop", "Platform\Desktop\DICOM.Desktop.csproj", "{59B38770-D2E7-40B9-8D27-A20691F1CAA9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DICOM.Desktop.Unity", "Platform\Desktop\DICOM.Desktop.Unity.csproj", "{59B38770-D2E7-40B9-8D27-A20691F1CAA9}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DICOM.Native", "Native\Desktop\DICOM.Native.vcxproj", "{C6148839-334D-4894-BDB9-E2D57438CF8A}"
 EndProject
@@ -522,8 +522,8 @@ Global
 		{F6F7D659-6C91-440E-8C77-DFB8DDE2D045} = {620C62DE-243D-4FDC-B856-FE9C486C7712}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_UseGlobalSettings = True
 		SolutionGuid = {67DE7737-8A68-479C-870E-B5B5B87291CF}
+		BuildVersion_UseGlobalSettings = True
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = DICOM.vsmdi

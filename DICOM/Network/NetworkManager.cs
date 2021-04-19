@@ -48,7 +48,14 @@ namespace Dicom.Network
         /// </summary>
         static NetworkManager()
         {
-            SetImplementation(Setup.GetSinglePlatformInstance<NetworkManager>());
+
+#if DESKTOP_PLATFORM
+            SetImplementation(new DesktopNetworkManager());
+#elif UNIVERSAL_PLATFORM
+            SetImplementation(new WindowsNetworkManager());
+#else
+#error Please define NetworkManager implementation
+#endif
         }
 
         #endregion

@@ -32,7 +32,13 @@ namespace Dicom.Imaging.Codec
         /// </summary>
         static TranscoderManager()
         {
-            SetImplementation(Setup.GetSinglePlatformInstance<TranscoderManager>());
+#if DESKTOP_PLATFORM
+            SetImplementation(new DesktopTranscoderManager());
+#elif UNIVERSAL_PLATFORM
+            SetImplementation(new WindowsTranscoderManager());
+#else
+#error Please define TranscoderManager implementation
+#endif
         }
 
         #endregion
@@ -63,7 +69,7 @@ namespace Dicom.Imaging.Codec
         /// </summary>
         /// <param name="inSyntax">Input (decode) transfer syntax.</param>
         /// <param name="outSyntax">Output (encode) transfer syntax.</param>
-        /// <returns>True if transcoder can convert from <paramref name="inSyntax"/> to <paramref name="outSyntax"/>, 
+        /// <returns>True if transcoder can convert from <paramref name="inSyntax"/> to <paramref name="outSyntax"/>,
         /// false otherwise.</returns>
         public static bool CanTranscode(DicomTransferSyntax inSyntax, DicomTransferSyntax outSyntax)
         {
@@ -95,7 +101,7 @@ namespace Dicom.Imaging.Codec
         }
 
         /// <summary>
-        /// Implementation of method to load codecs from assembly(ies) at the specified <paramref name="path"/> and 
+        /// Implementation of method to load codecs from assembly(ies) at the specified <paramref name="path"/> and
         /// with the specified <paramref name="search"/> pattern.
         /// </summary>
         /// <param name="path">Directory path to codec assemblies.</param>

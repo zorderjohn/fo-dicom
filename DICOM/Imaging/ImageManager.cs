@@ -24,7 +24,16 @@ namespace Dicom.Imaging
         /// </summary>
         static ImageManager()
         {
-            SetImplementation(Setup.GetDefaultPlatformInstance<ImageManager>());
+#if UNITY_PLATFORM
+            SetImplementation(new UnityImageManager());
+#elif DESKTOP_PLATFORM
+            SetImplementation(new WPFImageManager());
+#elif UNIVERSAL_PLATFORM
+            SetImplementation(new WindowsImageManager());
+#else
+#error Please define ImageManager implementation
+#endif
+
         }
 
         #endregion

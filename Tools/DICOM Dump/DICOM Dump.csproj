@@ -117,9 +117,9 @@
       <Project>{fa9c7678-b9d9-46bc-8921-8152fd6787ca}</Project>
       <Name>DICOM.Native64</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Platform\Desktop\DICOM.Desktop.csproj">
+    <ProjectReference Include="..\..\Platform\Desktop\DICOM.Desktop.Unity.csproj">
       <Project>{59b38770-d2e7-40b9-8d27-a20691f1caa9}</Project>
-      <Name>DICOM.Desktop</Name>
+      <Name>DICOM.Desktop.Unity</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
