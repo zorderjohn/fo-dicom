@@ -56,43 +56,16 @@ namespace Dicom.Imaging.Codec
         /// <param name="search">Search pattern for codec assemblies.</param>
         protected override void LoadCodecsImpl(string path, string search)
         {
-            if (path == null) path = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().EscapedCodeBase).LocalPath);
+            IDicomCodec c;
+            c = new dicomjp();
+            c = new DicomJpeg2000LosslessCodec();
+            Codecs[c.TransferSyntax] = c;
 
-            if (search == null) search = "Dicom.Native*.dll";
+            c = new DicomJpeg2000LossyCodec();
+            Codecs[c.TransferSyntax] = c;
 
-            var log = LogManager.GetLogger("Dicom.Imaging.Codec");
-            log.Debug("Searching {path}\\{wildcard} for Dicom codecs", path, search);
-
-            var foundAnyCodecs = false;
-
-            DirectoryCatalog catalog;
-            try
-            {
-                catalog = new DirectoryCatalog(path, search);
-            }
-            catch (Exception ex)
-            {
-                log.Error(
-                    "Error encountered creating new DirectCatalog({path}, {search}) - {@exception}",
-                    path,
-                    search,
-                    ex);
-                throw;
-            }
-
-            var container = new CompositionContainer(catalog);
-            foreach (var lazy in container.GetExports<IDicomCodec>())
-            {
-                foundAnyCodecs = true;
-                var codec = lazy.Value;
-                log.Debug("Codec: {codecName}", codec.TransferSyntax.UID.Name);
-                Codecs[codec.TransferSyntax] = codec;
-            }
-
-            if (!foundAnyCodecs)
-            {
-                log.Warn("No Dicom codecs were found after searching {path}\\{wildcard}", path, search);
-            }
+            c = new DicomRleCodecImpl();
+            Codecs[c.TransferSyntax] = c;
         }
 
         #endregion

@@ -45,23 +45,22 @@ namespace Dicom.Imaging.Codec
         #region METHODS
 
         /// <summary>
-        /// Implementation of method to load codecs from assembly(ies) at the specified <paramref name="path"/> and 
+        /// Implementation of method to load codecs from assembly(ies) at the specified <paramref name="path"/> and
         /// with the specified <paramref name="search"/> pattern.
         /// </summary>
         /// <param name="path">Directory path to codec assemblies.</param>
         /// <param name="search">Search pattern for codec assemblies.</param>
         protected override void LoadCodecsImpl(string path, string search)
         {
-            var assembly = typeof(WindowsTranscoderManager).GetTypeInfo().Assembly;
-            var types =
-                assembly.DefinedTypes.Where(
-                    ti => ti.IsClass && !ti.IsAbstract && ti.ImplementedInterfaces.Contains(typeof(IDicomCodec)));
+            IDicomCodec c;
+            c = new DicomJpeg2000LosslessCodec();
+            Codecs[c.TransferSyntax] = c;
 
-            foreach (var ti in types)
-            {
-                var codec = (IDicomCodec)Activator.CreateInstance(ti.AsType());
-                Codecs[codec.TransferSyntax] = codec;
-            }
+            c = new DicomJpeg2000LossyCodec();
+            Codecs[c.TransferSyntax] = c;
+
+            c = new DicomRleCodecImpl();
+            Codecs[c.TransferSyntax] = c;
         }
 
         #endregion
